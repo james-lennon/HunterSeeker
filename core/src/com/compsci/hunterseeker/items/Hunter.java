@@ -13,7 +13,7 @@ public class Hunter extends Item {
 	public void update(float dt) {
 		super.update(dt);
 		
-		pos.add(4*dt, 0);
+//		pos.add(4*dt, 0);
 		img.setPosition(pos.x, pos.y);
 	}
 	

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.compsci.hunterseeker.screens.PlayScreen;
 import com.compsci.hunterseeker.screens.TitleScreen;
 
 public class HunterSeeker extends Game {
@@ -15,13 +16,13 @@ public class HunterSeeker extends Game {
 		setupScreens();
 		
 		
-		showScreen("title");
+		showScreen("play");
 	}
 	
 	private void setupScreens(){
 		screens = new HashMap<String, Screen>();
 		screens.put("title", new TitleScreen());
-		
+		screens.put("play", new PlayScreen());
 	}
 	
 	private void showScreen(String name){

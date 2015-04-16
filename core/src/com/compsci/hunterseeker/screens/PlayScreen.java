@@ -1,39 +1,40 @@
 package com.compsci.hunterseeker.screens;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.Gdx;
 import com.compsci.hunterseeker.items.Hunter;
+import com.compsci.hunterseeker.util.InputManager;
 
-public class TitleScreen extends AbstractScreen {
+public class PlayScreen extends AbstractScreen {
 	
-	Hunter h;
+	private Hunter h;
+	private InputManager im;
 	
 	@Override
 	public void show() {
 		super.show();
+		
+		im = new InputManager();
+		Gdx.input.setInputProcessor(im);
+		h = new Hunter();
 	}
 	
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
 		super.resize(width, height);
-		
-		stage.clear();
-		
-		
-		Label l = new Label("Hunter Seeker", skin);
-		l.setPosition(width/2 - l.getWidth()*2.f, height/2);
-		l.setFontScale(5.0f);
-		stage.addActor(l);
+		h.show(stage);
 	}
 	
 	@Override
 	public void render(float delta) {
 		super.render(delta);
+		im.update(h);
+		h.update(delta);
 	}
 
 	@Override
 	public void back() {
-
+		// TODO Auto-generated method stub
+		
 	}
 
 }

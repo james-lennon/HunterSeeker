@@ -8,12 +8,17 @@ public class Item {
 	
 	public Image img;
 	public Vector2 pos;
+	public Vector2 dir;
+	protected float speed;
 	
 	public Item() {
 		pos = new Vector2();
+		dir = new Vector2();
+		speed = 100;
 	}
 	
 	public void update(float dt){
+		pos.add(dir.setLength(speed*dt));
 		
 	}
 	
@@ -24,5 +29,9 @@ public class Item {
 	public void die(){
 		img.remove();
 	}
-
+	
+	public void setDir(Vector2 d) {
+		dir.set(d);
+	}
+	
 }

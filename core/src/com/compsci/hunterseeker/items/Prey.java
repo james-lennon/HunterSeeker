@@ -3,16 +3,15 @@ package com.compsci.hunterseeker.items;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.compsci.hunterseeker.util.ImageManager;
 
-public class Hunter extends Item {
+public class Prey extends Item {
 	
-	public Hunter() {
+	public Prey(){
 		img = new Image(ImageManager.getImage("block"));
 	}
 
 	@Override
 	public void update(float dt) {
 		super.update(dt);
-		
 	}
-	
+
 }

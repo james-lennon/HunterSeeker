@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.compsci.hunterseeker.HunterSeeker;
+import com.compsci.hunterseeker.ai.InputManager;
 
 /**
  * Created by jameslennon on 3/21/15.

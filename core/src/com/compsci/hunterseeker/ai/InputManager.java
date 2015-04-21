@@ -1,11 +1,11 @@
-package com.compsci.hunterseeker.util;
+package com.compsci.hunterseeker.ai;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.compsci.hunterseeker.items.Item;
 
-public class InputManager extends InputAdapter {
+public class InputManager extends InputAdapter implements ItemController {
 
 	private boolean up, down, left, right;
 
@@ -37,6 +37,7 @@ public class InputManager extends InputAdapter {
 		return true;
 	}
 
+	@Override
 	public void update(Item i) {
 		Vector2 d = new Vector2();
 		d.x = right ? 1 : left ? -1 : 0;

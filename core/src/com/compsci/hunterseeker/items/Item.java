@@ -3,35 +3,75 @@ package com.compsci.hunterseeker.items;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.compsci.hunterseeker.ai.ItemController;
+import com.compsci.hunterseeker.util.Globals;
 
 public class Item {
-	
+
 	public Image img;
 	public Vector2 pos;
 	public Vector2 dir;
 	protected float speed;
-	
+	protected ItemController cont;
+
 	public Item() {
 		pos = new Vector2();
 		dir = new Vector2();
-		speed = 100;
+		speed = 150;
 	}
-	
-	public void update(float dt){
-		pos.add(dir.setLength(speed*dt));
-		
+
+	public void update(float dt) {
+		if (cont != null) {
+			cont.update(this);
+		}
+		checkBounds();
+		pos.add(dir.setLength(speed * dt));
+		img.setPosition(pos.x, pos.y);
 	}
-	
-	public void show(Stage s){
+
+	public void show(Stage s) {
 		s.addActor(img);
 	}
-	
-	public void die(){
+
+	public void die() {
 		img.remove();
 	}
-	
+
 	public void setDir(Vector2 d) {
 		dir.set(d);
 	}
-	
+
+	public void checkBounds() {
+		if (top() > Globals.APP_HEIGHT && dir.y > 0) {
+			dir.y = 0;
+		} else if (bottom() < 0 && dir.y < 0) {
+			dir.y = 0;
+		}
+		if (right() > Globals.APP_WIDTH && dir.x > 0) {
+			dir.x = 0;
+		} else if (left() < 0 && dir.x < 0) {
+			dir.x = 0;
+		}
+	}
+
+	public void setController(ItemController c) {
+		cont = c;
+	}
+
+	public double top() {
+		return pos.y + img.getHeight();
+	}
+
+	public double bottom() {
+		return pos.y;// - img.getHeight() / 2;
+	}
+
+	public double right() {
+		return pos.x + img.getWidth();
+	}
+
+	public double left() {
+		return pos.x; // - img.getWidth() / 2;
+	}
+
 }

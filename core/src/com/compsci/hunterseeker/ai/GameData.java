@@ -8,11 +8,11 @@ import com.compsci.hunterseeker.util.Globals;
 
 public class GameData {
 
-	private DataSet xdata, ydata;
+	private DataSet data, ydata;
 	private long lastEntry, entryWait = 10;
 
 	public GameData() {
-		xdata = new DataSet(1, 2);
+		data = new DataSet(2, 4);
 		ydata = new DataSet(1, 2);
 	}
 
@@ -22,6 +22,13 @@ public class GameData {
 			float dy = (i.pos.y - target.pos.y) / Globals.APP_HEIGHT;
 			// dx *= 10;
 			// dy *= 10;
+			float right = i.dir.x == 1 ? 1 : 0;
+			float left = i.dir.x == -1 ? 1 : 0;
+			float up = i.dir.y == 1 ? 1 : 0;
+			float down = i.dir.y == -1 ? 1 : 0;
+			data.addRow(new DataSetRow(new double[] { dx, dy }, new double[] {
+					left, right, down, up }));
+			/*
 			if (Math.abs(dx) >= .1 && i.dir.x != 0) {
 				float right = i.dir.x == 1 ? 1 : 0;
 				float left = i.dir.x == -1 ? 1 : 0;
@@ -34,24 +41,24 @@ public class GameData {
 				ydata.addRow(new DataSetRow(new double[] { dy },
 						new double[] { down, up }));
 			}
-
+			*/
 			lastEntry = System.currentTimeMillis();
 		}
 	}
 
 	public void save() {
-		xdata.save("xdata");
-		xdata.saveAsTxt("xdata.txt", ",");
+		data.save("xdata");
+		data.saveAsTxt("xdata.txt", ",");
 		ydata.save("ydata");
 		ydata.saveAsTxt("ydata.txt", ",");
 	}
 
 	@Override
 	public String toString() {
-		return xdata.toString();
+		return data.toString();
 	}
 
 	public DataSet[] getDataSets() {
-		return new DataSet[] { xdata, ydata };
+		return new DataSet[] { data, ydata };
 	}
 }

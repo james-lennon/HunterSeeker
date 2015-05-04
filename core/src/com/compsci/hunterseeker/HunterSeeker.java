@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.compsci.hunterseeker.screens.AIScreen;
+import com.compsci.hunterseeker.screens.ChaseDataScreen;
 import com.compsci.hunterseeker.screens.PlayScreen;
 import com.compsci.hunterseeker.screens.TitleScreen;
 import com.compsci.hunterseeker.screens.TrainScreen;
@@ -19,7 +21,7 @@ public class HunterSeeker extends Game {
 		setupScreens();
 		
 		
-		showScreen("play");
+		showScreen("chaseData");
 	}
 	
 	private void setupScreens(){
@@ -27,6 +29,8 @@ public class HunterSeeker extends Game {
 		screens.put("title", new TitleScreen());
 		screens.put("play", new PlayScreen());
 		screens.put("train", new TrainScreen());
+		screens.put("chaseData", new ChaseDataScreen());
+		screens.put("ai", new AIScreen());
 	}
 	
 	public void showScreen(String name){

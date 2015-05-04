@@ -11,12 +11,12 @@ import com.compsci.hunterseeker.util.Globals;
 
 public class PlayScreen extends AbstractScreen {
 
-	private Hunter h;
-	private Prey p;
-	private InputManager im;
-	private GameData data;
+	protected Hunter h;
+	protected Prey p;
+	protected InputManager im;
+	protected GameData data;
 
-	private long startTime;
+	protected long startTime;
 	private Vector2[] spawns;
 
 	@Override
@@ -26,10 +26,10 @@ public class PlayScreen extends AbstractScreen {
 		im = new InputManager();
 		Gdx.input.setInputProcessor(im);
 		h = new Hunter();
-		h.setController(im);
+//		h.setController(im);
 
 		p = new Prey();
-		p.setController(new DumbController());
+//		p.setController(new DumbController());
 
 		data = new GameData();
 
@@ -75,13 +75,7 @@ public class PlayScreen extends AbstractScreen {
 		p.update(delta);
 
 		h.checkPrey(p);
-		data.addEntry(h, p);
-
-		if (System.currentTimeMillis() - startTime > 30000) {
-			TrainScreen.gameData = data;
-			data.save();
-			Globals.game.showScreen("train");
-		}
+		
 	}
 
 	@Override

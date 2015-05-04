@@ -25,7 +25,7 @@ public class Item {
 			cont.update(this);
 		}
 		checkBounds();
-		pos.add(dir.setLength(speed * dt));
+		pos.add(new Vector2(dir).setLength(speed * dt));
 		img.setPosition(pos.x, pos.y);
 	}
 
@@ -72,6 +72,25 @@ public class Item {
 
 	public double left() {
 		return pos.x; // - img.getWidth() / 2;
+	}
+
+	public boolean overlaps(Item other) {
+		if (pos.x < other.pos.x && right() > other.left()) {
+			if (pos.y < other.pos.y && top() > other.bottom()) {
+				return true;
+			} else if (pos.y > other.pos.y && bottom() < other.top()) {
+				return true;
+			}
+			return false;
+		} else if (pos.x > other.pos.x && left() < other.right()) {
+			if (pos.y < other.pos.y && top() > other.bottom()) {
+				return true;
+			} else if (pos.y > other.pos.y && bottom() < other.top()) {
+				return true;
+			}
+			return false;
+		}
+		return false;
 	}
 
 }

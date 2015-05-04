@@ -6,7 +6,7 @@ import com.compsci.hunterseeker.util.ImageManager;
 public class Prey extends Item {
 	
 	public Prey(){
-		img = new Image(ImageManager.getImage("block"));
+		img = new Image(ImageManager.getImage("white"));
 	}
 
 	@Override

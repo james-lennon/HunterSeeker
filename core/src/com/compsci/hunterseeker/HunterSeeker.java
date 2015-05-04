@@ -6,6 +6,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.compsci.hunterseeker.screens.PlayScreen;
 import com.compsci.hunterseeker.screens.TitleScreen;
+import com.compsci.hunterseeker.screens.TrainScreen;
+import com.compsci.hunterseeker.util.Globals;
 
 public class HunterSeeker extends Game {
 	
@@ -13,6 +15,7 @@ public class HunterSeeker extends Game {
 	
 	@Override
 	public void create () {
+		Globals.game = this;
 		setupScreens();
 		
 		
@@ -23,9 +26,10 @@ public class HunterSeeker extends Game {
 		screens = new HashMap<String, Screen>();
 		screens.put("title", new TitleScreen());
 		screens.put("play", new PlayScreen());
+		screens.put("train", new TrainScreen());
 	}
 	
-	private void showScreen(String name){
+	public void showScreen(String name){
 		setScreen(screens.get(name));
 	}
 }

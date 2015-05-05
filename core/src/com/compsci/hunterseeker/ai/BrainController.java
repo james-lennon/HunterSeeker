@@ -84,7 +84,7 @@ public class BrainController implements ItemController {
 	}
 
 	private boolean checkThreshold(double val) {
-		return val > .5;
+		return val > .2;
 	}
 
 	@Override

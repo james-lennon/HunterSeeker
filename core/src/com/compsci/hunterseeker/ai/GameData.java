@@ -26,8 +26,10 @@ public class GameData {
 			float left = i.dir.x == -1 ? 1 : 0;
 			float up = i.dir.y == 1 ? 1 : 0;
 			float down = i.dir.y == -1 ? 1 : 0;
-			data.addRow(new DataSetRow(new double[] { dx, dy }, new double[] {
-					left, right, down, up }));
+			if (right != 0 || left != 0 || up !=0 || down != 0) {
+				data.addRow(new DataSetRow(new double[] { dx, dy }, new double[] {
+						left, right, down, up }));
+			}
 			/*
 			if (Math.abs(dx) >= .1 && i.dir.x != 0) {
 				float right = i.dir.x == 1 ? 1 : 0;

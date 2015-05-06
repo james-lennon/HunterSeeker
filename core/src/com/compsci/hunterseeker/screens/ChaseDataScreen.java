@@ -18,7 +18,7 @@ public class ChaseDataScreen extends PlayScreen {
 		super.render(delta);
 		data.addEntry(h, p);
 
-		if (System.currentTimeMillis() - startTime > 30000) {
+		if (System.currentTimeMillis() - startTime > 60000) {
 			TrainScreen.gameData = data;
 			data.save();
 			Globals.game.showScreen("train");

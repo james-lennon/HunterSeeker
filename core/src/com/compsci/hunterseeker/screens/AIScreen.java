@@ -15,9 +15,14 @@ public class AIScreen extends PlayScreen {
 	@Override
 	public void render(float delta) {
 		Vector2 dist = new Vector2(h.pos).sub(p.pos);
-		TrainScreen.bc.setInputs(dist.x / Globals.APP_WIDTH, dist.y
-				/ Globals.APP_HEIGHT);
-		
+		// TrainScreen.bc.setInputs(dist.x / Globals.APP_WIDTH, dist.y
+		// / Globals.APP_HEIGHT);
+		TrainScreen.bc.setInputs(
+				(float) (dist.len()
+						/ Math.sqrt(Globals.APP_WIDTH * Globals.APP_WIDTH
+								+ Globals.APP_HEIGHT * Globals.APP_HEIGHT)),
+				dist.angle() / 360);
+
 		super.render(delta);
 	}
 

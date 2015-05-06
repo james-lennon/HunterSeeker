@@ -17,7 +17,7 @@ public class Item {
 	public Item() {
 		pos = new Vector2();
 		dir = new Vector2();
-		speed = 150;
+		speed = 300;
 	}
 
 	public void update(float dt) {

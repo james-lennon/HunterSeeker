@@ -7,8 +7,11 @@ import com.compsci.hunterseeker.util.ImageManager;
 
 public class Hunter extends Item {
 	
+	float w = 30;
+	
 	public Hunter() {
 		img = new Image(ImageManager.getImage("red"));
+		img.setSize(w, w);
 	}
 
 	@Override

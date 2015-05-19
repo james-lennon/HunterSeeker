@@ -6,6 +6,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.compsci.hunterseeker.screens.AIScreen;
 import com.compsci.hunterseeker.screens.ChaseDataScreen;
+import com.compsci.hunterseeker.screens.FleeDataScreen;
 import com.compsci.hunterseeker.screens.PlayScreen;
 import com.compsci.hunterseeker.screens.TitleScreen;
 import com.compsci.hunterseeker.screens.TrainScreen;
@@ -20,7 +21,7 @@ public class HunterSeeker extends Game {
 		Globals.game = this;
 		setupScreens();
 		
-		
+//		showScreen("ai");
 		showScreen("chaseData");
 	}
 	
@@ -31,6 +32,7 @@ public class HunterSeeker extends Game {
 		screens.put("train", new TrainScreen());
 		screens.put("chaseData", new ChaseDataScreen());
 		screens.put("ai", new AIScreen());
+		screens.put("flee", new FleeDataScreen());
 	}
 	
 	public void showScreen(String name){

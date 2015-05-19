@@ -49,8 +49,10 @@ public class Item {
 		}
 		if (right() > Globals.APP_WIDTH && dir.x > 0) {
 			dir.x = 0;
+//			pos.x -= Globals.APP_WIDTH;
 		} else if (left() < 0 && dir.x < 0) {
 			dir.x = 0;
+//			pos.x += Globals.APP_WIDTH;
 		}
 	}
 

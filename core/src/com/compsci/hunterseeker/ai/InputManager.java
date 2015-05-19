@@ -3,6 +3,7 @@ package com.compsci.hunterseeker.ai;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.compsci.hunterseeker.items.Item;
 
 public class InputManager extends InputAdapter implements ItemController {
@@ -39,6 +40,8 @@ public class InputManager extends InputAdapter implements ItemController {
 
 	@Override
 	public void update(Item i) {
+//		i.img.rotateBy(2.0f);
+		i.img.setOrigin(Align.center);
 		Vector2 d = new Vector2();
 		d.x = right ? 1 : left ? -1 : 0;
 		d.y = up ? 1 : down ? -1 : 0;

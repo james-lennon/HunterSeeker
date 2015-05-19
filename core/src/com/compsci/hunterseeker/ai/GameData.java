@@ -11,8 +11,12 @@ public class GameData {
 
 	private DataSet data, aggregate;
 	private long lastEntry, entryWait = 10;
+	private String name;
+	private boolean isAggregate;
 
-	public GameData() {
+	public GameData(String filename, boolean agg) {
+		name = filename;
+		isAggregate = agg;
 		data = new DataSet(2, 4);
 		aggregate = DataSet.createFromFile("aggregate_data.txt", 2, 4, ",",
 				true);
@@ -20,7 +24,7 @@ public class GameData {
 
 	public void addEntry(Item i, Item target) {
 		if (System.currentTimeMillis() - lastEntry > entryWait) {
-			Vector2 offset = new Vector2(i.pos).sub(target.pos);
+			Vector2 offset = Globals.getOffset(i, target, false);
 
 			// float dx = (i.pos.x - target.pos.x) / Globals.APP_WIDTH;
 			// float dy = (i.pos.y - target.pos.y) / Globals.APP_HEIGHT;
@@ -56,9 +60,11 @@ public class GameData {
 	}
 
 	public void save() {
-		data.save("xdata");
-		data.saveAsTxt("xdata.txt", ",");
-		aggregate.saveAsTxt("aggregate_data.txt", ",");
+		data.save(name);
+		data.saveAsTxt(name+".txt", ",");
+		if (isAggregate) {
+			aggregate.saveAsTxt("aggregate_data.txt", ",");
+		}
 	}
 
 	@Override
@@ -66,7 +72,7 @@ public class GameData {
 		return data.toString();
 	}
 
-	// public DataSet[] getDataSets() {
-	// return new DataSet[] { data, ydata };
-	// }
+	 public DataSet getDataSet() {
+	 return data;
+	 }
 }

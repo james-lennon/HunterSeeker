@@ -18,34 +18,11 @@ public class BrainController implements ItemController {
 	MultiLayerPerceptron net;
 
 	public BrainController() {
-	}
-
-	private MultiLayerPerceptron learnAxis(DataSet data) {
-		net = new MultiLayerPerceptron(2, 30, 30, 2);
-
-		BackPropagation train = new BackPropagation();
-		train.setNeuralNetwork(net);
-		// train.setUseDynamicMomentum(true);
-		net.setLearningRule(train);
-
-		train.setTrainingSet(data);
-		// train.setErrorFunction(new MeanSquaredError(data.size()));
-
-		int epoch = 1;
-		do {
-			train.doLearningEpoch(data);
-			if (epoch > 5) {
-				System.out.println("Epoch " + epoch + ", error="
-						+ train.getTotalNetworkError());
-			}
-			epoch++;
-		} while (train.getTotalNetworkError() > 0.01 && epoch < 100000);
-		return net;
+		// create new perceptron network
+		net = new MultiLayerPerceptron(2, 20, 4);
 	}
 
 	public void learn(GameData data) {
-		// create new perceptron network
-		net = new MultiLayerPerceptron(2, 20, 4);
 		// neuralNetwork.randomizeWeights();
 		MomentumBackpropagation train = new MomentumBackpropagation();
 		// train.setMomentum(2);
@@ -56,7 +33,7 @@ public class BrainController implements ItemController {
 		net.setLearningRule(train);
 
 		// create training set
-		DataSet trainingSet = DataSet.load("xdata");
+		DataSet trainingSet = data.getDataSet();
 		// setupData(trainingSet, 2);
 		train.setTrainingSet(trainingSet);
 		// train.setErrorFunction(new MeanSquaredError(trainingSet.size()));
@@ -70,7 +47,7 @@ public class BrainController implements ItemController {
 				double e = ((BackPropagation) event.getSource())
 						.getPreviousEpochError();
 				System.out.println(e);
-				if (System.currentTimeMillis() - start > 60000) {
+				if (System.currentTimeMillis() - start > Globals.learnTime * 1000) {
 					net.stopLearning();
 					((TrainScreen)Globals.game.getScreen()).finishTraining();
 				}
@@ -107,8 +84,8 @@ public class BrainController implements ItemController {
 		i.dir.set(dx, dy);
 	}
 
-	// public void load(String filename){
-	// xnet = NeuralNetwork.createFromFile(filename);
-	// }
+	 public void load(String filename){
+		 net = (MultiLayerPerceptron) NeuralNetwork.createFromFile(filename);
+	 }
 
 }

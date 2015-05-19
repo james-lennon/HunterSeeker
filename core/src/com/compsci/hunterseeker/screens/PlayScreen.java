@@ -2,12 +2,10 @@ package com.compsci.hunterseeker.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.compsci.hunterseeker.ai.DumbController;
 import com.compsci.hunterseeker.ai.GameData;
 import com.compsci.hunterseeker.ai.InputManager;
 import com.compsci.hunterseeker.items.Hunter;
 import com.compsci.hunterseeker.items.Prey;
-import com.compsci.hunterseeker.util.Globals;
 
 public class PlayScreen extends AbstractScreen {
 
@@ -30,8 +28,6 @@ public class PlayScreen extends AbstractScreen {
 
 		p = new Prey();
 //		p.setController(new DumbController());
-
-		data = new GameData();
 
 		startTime = System.currentTimeMillis();
 	}
@@ -81,7 +77,9 @@ public class PlayScreen extends AbstractScreen {
 	@Override
 	public void hide() {
 
-		System.out.println(data);
+		if (data!=null) {
+			System.out.println(data);
+		}
 
 		super.hide();
 	}
